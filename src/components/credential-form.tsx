@@ -72,8 +72,8 @@ export function CredentialForm({ isOpen, onClose, credential }: CredentialFormPr
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent className="max-w-md w-full max-h-[90vh] flex flex-col overflow-hidden">
-                <DialogHeader className="px-6 pt-6">
+            <DialogContent className="max-w-md w-full max-h-[90vh] flex flex-col p-0">
+                <DialogHeader className="px-6 pt-6 pb-4">
                     <DialogTitle>{credential ? t('edit_credential_title') : t('add_credential_title')}</DialogTitle>
                     <DialogDescription>
                         {t('credential_form_description')}
@@ -93,22 +93,22 @@ export function CredentialForm({ isOpen, onClose, credential }: CredentialFormPr
                             <Label htmlFor="password">{t('password_label')}</Label>
                             <Input id="password" type="text" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={t('password_placeholder')} disabled={isLoading} />
                         </div>
+                         <Accordion type="single" collapsible className="w-full">
+                          <AccordionItem value="item-1">
+                            <AccordionTrigger>
+                                <div className="flex items-center text-sm">
+                                    <KeyRound className="w-4 h-4 mr-2" />
+                                    {t('password_generator_title')}
+                                </div>
+                            </AccordionTrigger>
+                            <AccordionContent>
+                               <SimplePasswordGenerator onPasswordGenerated={setPassword} />
+                            </AccordionContent>
+                          </AccordionItem>
+                        </Accordion>
                     </div>
-                     <Accordion type="single" collapsible className="w-full">
-                      <AccordionItem value="item-1">
-                        <AccordionTrigger>
-                            <div className="flex items-center text-sm">
-                                <KeyRound className="w-4 h-4 mr-2" />
-                                {t('password_generator_title')}
-                            </div>
-                        </AccordionTrigger>
-                        <AccordionContent>
-                           <SimplePasswordGenerator onPasswordGenerated={setPassword} />
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
                 </ScrollArea>
-                <DialogFooter className="px-6 pb-6 pt-4 border-t">
+                <DialogFooter className="px-6 pb-6 pt-4 border-t mt-auto">
                     <Button variant="outline" onClick={onClose} disabled={isLoading}>{t('cancel_button')}</Button>
                     <Button onClick={handleSubmit} disabled={isLoading}>
                         {isLoading ? t('loading_saving') : t('save_button')}
