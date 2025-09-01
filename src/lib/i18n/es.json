@@ -68,6 +68,7 @@
     "edit_credential_title": "Editar Credencial",
     "add_credential_title": "Añadir Nueva Credencial",
     "credential_form_description": "Guarda tu información de inicio de sesión de forma segura. Puedes usar el generador para una contraseña fuerte.",
+    "credential_form_new_password_generated": "Se ha generado una nueva contraseña segura.",
     "reference_label": "Referencia",
     "username_label": "Usuario/Email",
     "password_label": "Contraseña",

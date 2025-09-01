@@ -75,6 +75,7 @@
     "save_button": "Save",
     "credential_added_title": "Credential Added",
     "credential_updated_title": "Credential Updated",
+    "credential_form_new_password_generated": "A new secure password has been generated.",
     "form_error_fill_all_fields": "The Reference and Password fields are required.",
     "form_error_username_required": "Please fill in the Username/Email field.",
     "optional_label": "Optional",

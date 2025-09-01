@@ -56,7 +56,7 @@ export function CredentialForm({ isOpen, onClose, credential }: CredentialFormPr
         setPassword(newPassword);
         toast({
             title: t('copied_title'),
-            description: "A new secure password has been generated.",
+            description: t('credential_form_new_password_generated'),
           });
       }, [toast, t]);
 
