@@ -101,7 +101,7 @@
     "select_question_placeholder": "Select a question...",
     "answer_placeholder": "Enter your answer here",
     "save_recovery_button": "Save Recovery Info",
-    "update_recovery_button": "Update Recovery Info",
+    "update_recovery_button": "Update Information",
     "setup_recovery_error_all_fields": "Please select three questions and provide an answer for each.",
     "setup_recovery_error_unique_questions": "Please select three different security questions.",
     "setup_recovery_success_title": "Recovery Info Saved!",
