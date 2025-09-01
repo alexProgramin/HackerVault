@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,9 +10,7 @@ import { useVault, Credential } from "@/contexts/vault-context";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "@/hooks/use-translation";
 import { ScrollArea } from "./ui/scroll-area";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
 import { KeyRound } from "lucide-react";
-import { SimplePasswordGenerator } from "./simple-password-generator";
 
 
 interface CredentialFormProps {
@@ -41,6 +39,26 @@ export function CredentialForm({ isOpen, onClose, credential }: CredentialFormPr
             setPassword("");
         }
     }, [credential, isOpen]);
+
+    const handleGeneratePassword = useCallback(() => {
+        const upper = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+        const lower = 'abcdefghijkmnopqrstuvwxyz';
+        const digits = '23456789';
+        const symbols = '!@#$%^&*()-_=+[]{};:,.?/';
+        const charPool = upper + lower + digits + symbols;
+        const length = 20;
+        
+        let newPassword = '';
+        for (let i = 0; i < length; i++) {
+          const randomIndex = Math.floor(Math.random() * charPool.length);
+          newPassword += charPool[randomIndex];
+        }
+        setPassword(newPassword);
+        toast({
+            title: t('copied_title'),
+            description: "A new secure password has been generated.",
+          });
+      }, [toast, t]);
 
     const handleSubmit = async () => {
         if (!name || !password) {
@@ -93,21 +111,10 @@ export function CredentialForm({ isOpen, onClose, credential }: CredentialFormPr
                             <Label htmlFor="password">{t('password_label')}</Label>
                             <Input id="password" type="text" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={t('password_placeholder')} disabled={isLoading} />
                         </div>
-                         <Accordion type="single" collapsible className="w-full">
-                          <AccordionItem value="item-1">
-                            <AccordionTrigger>
-                                <div className="flex items-center text-sm">
-                                    <KeyRound className="w-4 h-4 mr-2" />
-                                    {t('password_generator_title')}
-                                </div>
-                            </AccordionTrigger>
-                            <AccordionContent>
-                               <div className="py-4">
-                                <SimplePasswordGenerator onPasswordGenerated={setPassword} />
-                               </div>
-                            </AccordionContent>
-                          </AccordionItem>
-                        </Accordion>
+                        <Button variant="link" onClick={handleGeneratePassword} className="p-0 h-auto text-sm text-secondary">
+                           <KeyRound className="w-4 h-4 mr-2" />
+                           {t('password_generator_title')}
+                        </Button>
                     </div>
                 </ScrollArea>
                 <DialogFooter className="px-6 pb-6 pt-4 mt-auto border-t">
