@@ -108,7 +108,7 @@ export function CredentialForm({ isOpen, onClose, credential }: CredentialFormPr
                         </Accordion>
                     </div>
                 </ScrollArea>
-                <DialogFooter className="px-6 pb-6 pt-4 border-t mt-auto">
+                <DialogFooter className="px-6 pb-6 pt-4 mt-auto border-t">
                     <Button variant="outline" onClick={onClose} disabled={isLoading}>{t('cancel_button')}</Button>
                     <Button onClick={handleSubmit} disabled={isLoading}>
                         {isLoading ? t('loading_saving') : t('save_button')}
