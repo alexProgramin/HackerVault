@@ -102,7 +102,9 @@ export function CredentialForm({ isOpen, onClose, credential }: CredentialFormPr
                                 </div>
                             </AccordionTrigger>
                             <AccordionContent>
-                               <SimplePasswordGenerator onPasswordGenerated={setPassword} />
+                               <div className="py-4">
+                                <SimplePasswordGenerator onPasswordGenerated={setPassword} />
+                               </div>
                             </AccordionContent>
                           </AccordionItem>
                         </Accordion>
