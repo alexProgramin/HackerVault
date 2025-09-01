@@ -1,6 +1,6 @@
 
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -24,20 +24,31 @@ export default function SetupRecoveryPage() {
     const router = useRouter();
     const { setupRecovery, vault } = useVault();
     const { toast } = useToast();
+    const [isClient, setIsClient] = useState(false);
 
     const findQuestionKey = (questionText: string) => {
         if (!questionText) return "";
-        // Find the key whose translated value matches the stored question text
         return questions.find(key => t(key as any) === questionText) || "";
     };
 
-    const [q1Key, setQ1Key] = useState(() => findQuestionKey(vault.securityQuestions[0]?.question || ""));
+    const [q1Key, setQ1Key] = useState("");
     const [a1, setA1] = useState("");
-    const [q2Key, setQ2Key] = useState(() => findQuestionKey(vault.securityQuestions[1]?.question || ""));
+    const [q2Key, setQ2Key] = useState("");
     const [a2, setA2] = useState("");
-    const [q3Key, setQ3Key] = useState(() => findQuestionKey(vault.securityQuestions[2]?.question || ""));
+    const [q3Key, setQ3Key] = useState("");
     const [a3, setA3] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+        // Initialize state that depends on vault only on the client
+        if (vault.securityQuestions.length > 0) {
+            setQ1Key(findQuestionKey(vault.securityQuestions[0]?.question || ""));
+            setQ2Key(findQuestionKey(vault.securityQuestions[1]?.question || ""));
+            setQ3Key(findQuestionKey(vault.securityQuestions[2]?.question || ""));
+        }
+    }, [vault.securityQuestions, t]);
+
 
     const handleSetup = async () => {
         const questionsToSave = [
@@ -77,6 +88,10 @@ export default function SetupRecoveryPage() {
         router.push('/vault');
     };
     
+    if (!isClient) {
+        return null; // or a loading skeleton
+    }
+
     const isUpdate = vault.securityQuestions.length > 0;
     
     return (
