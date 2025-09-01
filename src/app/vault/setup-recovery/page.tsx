@@ -26,11 +26,6 @@ export default function SetupRecoveryPage() {
     const { toast } = useToast();
     const [isClient, setIsClient] = useState(false);
 
-    const findQuestionKey = (questionText: string) => {
-        if (!questionText) return "";
-        return questions.find(key => t(key as any) === questionText) || "";
-    };
-
     const [q1Key, setQ1Key] = useState("");
     const [a1, setA1] = useState("");
     const [q2Key, setQ2Key] = useState("");
@@ -43,18 +38,18 @@ export default function SetupRecoveryPage() {
         setIsClient(true);
         // Initialize state that depends on vault only on the client
         if (vault.securityQuestions.length > 0) {
-            setQ1Key(findQuestionKey(vault.securityQuestions[0]?.question || ""));
-            setQ2Key(findQuestionKey(vault.securityQuestions[1]?.question || ""));
-            setQ3Key(findQuestionKey(vault.securityQuestions[2]?.question || ""));
+            setQ1Key(vault.securityQuestions[0]?.question || "");
+            setQ2Key(vault.securityQuestions[1]?.question || "");
+            setQ3Key(vault.securityQuestions[2]?.question || "");
         }
-    }, [vault.securityQuestions, t]);
+    }, [vault.securityQuestions]);
 
 
     const handleSetup = async () => {
         const questionsToSave = [
-            { question: t(q1Key as any), answer: a1 },
-            { question: t(q2Key as any), answer: a2 },
-            { question: t(q3Key as any), answer: a3 },
+            { question: q1Key, answer: a1 },
+            { question: q2Key, answer: a2 },
+            { question: q3Key, answer: a3 },
         ];
         
         const questionKeys = [q1Key, q2Key, q3Key];

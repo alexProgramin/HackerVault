@@ -7,9 +7,11 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useTranslation } from "@/hooks/use-translation";
-import { useVault } from "@/contexts/vault-context";
+import { useVault, SecurityQuestion } from "@/contexts/vault-context";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
+
+type TranslationKey = keyof typeof import('@/lib/i18n/en.json');
 
 export default function RecoverPage() {
     const { t } = useTranslation();
@@ -102,9 +104,9 @@ export default function RecoverPage() {
                 <CardContent className="space-y-6">
                     {!isVerified ? (
                         <>
-                            {vault.securityQuestions.map((sq, index) => (
+                            {vault.securityQuestions.map((sq: SecurityQuestion, index: number) => (
                                 <div key={index} className="space-y-2">
-                                    <Label>{sq.question}</Label>
+                                    <Label>{t(sq.question as TranslationKey)}</Label>
                                     <Input
                                         type="text"
                                         value={answers[index]}
