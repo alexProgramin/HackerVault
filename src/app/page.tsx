@@ -50,8 +50,8 @@ export default function Home() {
         <CardContent>
           <Tabs defaultValue="analyzer" className="w-full">
             <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="analyzer"><Shield className="mr-2" /> <span className="hidden sm:inline">{t('password_analyzer_title')}</span></TabsTrigger>
-              <TabsTrigger value="generator"><KeyRound className="mr-2" /> <span className="hidden sm:inline">{t('password_generator_title')}</span></TabsTrigger>
+              <TabsTrigger value="analyzer"><Shield className="mr-0 sm:mr-2" /> <span className="hidden sm:inline">{t('password_analyzer_title')}</span></TabsTrigger>
+              <TabsTrigger value="generator"><KeyRound className="mr-0 sm:mr-2" /> <span className="hidden sm:inline">{t('password_generator_title')}</span></TabsTrigger>
             </TabsList>
             <TabsContent value="analyzer" className="mt-6">
               <PasswordStrengthAnalyzer />
