@@ -52,7 +52,7 @@ export function PinDialog({ isOpen, onClose, onConfirm }: PinDialogProps) {
                             value={pin}
                             onChange={(e) => setPin(e.target.value.replace(/\D/g, ''))}
                             placeholder="••••"
-                            className="text-center text-2xl tracking-[1em]"
+                            className="text-center text-2xl tracking-[0.5em] sm:tracking-[1em]"
                             onKeyPress={(e) => e.key === 'Enter' && handleConfirmClick()}
                             disabled={isLoading}
                         />
