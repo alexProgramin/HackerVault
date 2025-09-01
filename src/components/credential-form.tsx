@@ -8,11 +8,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useVault, Credential } from "@/contexts/vault-context";
 import { useToast } from "@/hooks/use-toast";
-import { PasswordGenerator } from "./password-generator";
 import { useTranslation } from "@/hooks/use-translation";
 import { ScrollArea } from "./ui/scroll-area";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
 import { KeyRound } from "lucide-react";
+import { SimplePasswordGenerator } from "./simple-password-generator";
 
 
 interface CredentialFormProps {
@@ -103,7 +103,7 @@ export function CredentialForm({ isOpen, onClose, credential }: CredentialFormPr
                             </div>
                         </AccordionTrigger>
                         <AccordionContent>
-                           <PasswordGenerator />
+                           <SimplePasswordGenerator onPasswordGenerated={setPassword} />
                         </AccordionContent>
                       </AccordionItem>
                     </Accordion>
