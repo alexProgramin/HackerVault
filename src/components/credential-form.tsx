@@ -10,6 +10,7 @@ import { useVault, Credential } from "@/contexts/vault-context";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "@/hooks/use-translation";
 import { KeyRound } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 
 interface CredentialFormProps {
@@ -96,8 +97,8 @@ export function CredentialForm({ isOpen, onClose, credential }: CredentialFormPr
                         {t('credential_form_description')}
                     </DialogDescription>
                 </DialogHeader>
-                <div className="flex-1 overflow-y-auto p-6">
-                    <div className="space-y-4">
+                <ScrollArea className="flex-1">
+                    <div className="space-y-4 p-6">
                         <div className="space-y-2">
                             <Label htmlFor="name">{t('reference_label')}</Label>
                             <Input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Google Account" disabled={isLoading} />
@@ -115,7 +116,7 @@ export function CredentialForm({ isOpen, onClose, credential }: CredentialFormPr
                            {t('generate_password_button')}
                         </Button>
                     </div>
-                </div>
+                </ScrollArea>
                 <DialogFooter className="px-6 pb-6 pt-4 flex-shrink-0 border-t">
                     <Button variant="outline" onClick={onClose} disabled={isLoading}>{t('cancel_button')}</Button>
                     <Button onClick={handleSubmit} disabled={isLoading}>
