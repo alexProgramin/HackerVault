@@ -97,9 +97,9 @@ export default function VaultPage() {
     };
 
     return (
-        <main className="flex min-h-screen flex-col items-center p-4 md:p-8 bg-background/90">
-             <div className="w-full max-w-4xl flex flex-col flex-grow h-[calc(100vh-4rem)]">
-                <header className="flex flex-col sm:flex-row justify-between items-center mb-6 sm:mb-8 gap-4">
+        <main className="flex h-screen flex-col items-center p-4 md:p-8 bg-background/90">
+             <div className="w-full max-w-4xl flex flex-col flex-grow min-h-0">
+                <header className="flex flex-col sm:flex-row justify-between items-center mb-4 sm:mb-6 gap-4">
                     <h1 className="text-4xl text-primary font-bold text-center sm:text-left">{t('vault_title')}</h1>
                     <div className="flex items-center gap-2">
                         <Link href="/vault/setup-recovery">
@@ -118,7 +118,7 @@ export default function VaultPage() {
                     </div>
                 </header>
 
-                <Card className="bg-card/80 backdrop-blur-sm border-primary/20 flex flex-col flex-grow">
+                <Card className="bg-card/80 backdrop-blur-sm border-primary/20 flex flex-col flex-grow min-h-0">
                     <CardHeader className="flex flex-col sm:flex-row items-center justify-between gap-4">
                         <CardTitle className="text-center sm:text-left">{t('stored_credentials_title')}</CardTitle>
                         <Button onClick={handleAddNew} className="w-full sm:w-auto">
