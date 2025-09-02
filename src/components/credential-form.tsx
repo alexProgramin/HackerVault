@@ -97,8 +97,8 @@ export function CredentialForm({ isOpen, onClose, credential }: CredentialFormPr
                         {t('credential_form_description')}
                     </DialogDescription>
                 </DialogHeader>
-                <div className="flex-1 overflow-y-auto p-6">
-                    <div className="space-y-4">
+                <ScrollArea className="flex-1">
+                    <div className="space-y-4 p-6">
                         <div className="space-y-2">
                             <Label htmlFor="name">{t('reference_label')}</Label>
                             <Input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Google Account" disabled={isLoading} />
@@ -116,7 +116,7 @@ export function CredentialForm({ isOpen, onClose, credential }: CredentialFormPr
                            {t('generate_password_button')}
                         </Button>
                     </div>
-                </div>
+                </ScrollArea>
                 <DialogFooter className="px-6 pb-6 pt-4 flex-shrink-0 border-t flex-col-reverse sm:flex-col-reverse gap-2">
                     <Button variant="link" onClick={onClose} disabled={isLoading} className="text-secondary hover:text-secondary/80">
                         {t('cancel_button')}
