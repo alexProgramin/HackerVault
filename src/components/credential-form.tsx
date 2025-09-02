@@ -97,8 +97,8 @@ export function CredentialForm({ isOpen, onClose, credential }: CredentialFormPr
                         {t('credential_form_description')}
                     </DialogDescription>
                 </DialogHeader>
-                <div className="flex-1 overflow-y-auto">
-                    <div className="space-y-4 p-6">
+                <div className="flex-1 overflow-y-auto p-6">
+                    <div className="space-y-4">
                         <div className="space-y-2">
                             <Label htmlFor="name">{t('reference_label')}</Label>
                             <Input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Google Account" disabled={isLoading} />
@@ -117,9 +117,11 @@ export function CredentialForm({ isOpen, onClose, credential }: CredentialFormPr
                         </Button>
                     </div>
                 </div>
-                <DialogFooter className="px-6 pb-6 pt-4 flex-shrink-0 border-t">
-                    <Button variant="outline" onClick={onClose} disabled={isLoading}>{t('cancel_button')}</Button>
-                    <Button onClick={handleSubmit} disabled={isLoading}>
+                <DialogFooter className="px-6 pb-6 pt-4 flex-shrink-0 border-t flex-col-reverse sm:flex-col-reverse gap-2">
+                    <Button variant="link" onClick={onClose} disabled={isLoading} className="text-secondary hover:text-secondary/80">
+                        {t('cancel_button')}
+                    </Button>
+                    <Button onClick={handleSubmit} disabled={isLoading} variant="destructive">
                         {isLoading ? t('loading_saving') : t('save_button')}
                     </Button>
                 </DialogFooter>
