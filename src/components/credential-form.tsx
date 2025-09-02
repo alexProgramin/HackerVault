@@ -127,5 +127,3 @@ export function CredentialForm({ isOpen, onClose, credential }: CredentialFormPr
         </Dialog>
     );
 }
-
-    
