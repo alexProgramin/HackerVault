@@ -117,11 +117,11 @@ export function CredentialForm({ isOpen, onClose, credential }: CredentialFormPr
                         </Button>
                     </div>
                 </ScrollArea>
-                <DialogFooter className="px-6 pb-6 pt-4 flex-shrink-0 border-t flex-col-reverse sm:flex-col-reverse gap-2">
-                    <Button variant="link" onClick={onClose} disabled={isLoading} className="text-secondary hover:text-secondary/80">
+                <DialogFooter className="px-6 pb-6 pt-4 flex-shrink-0 border-t flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
+                    <Button variant="outline" onClick={onClose} disabled={isLoading}>
                         {t('cancel_button')}
                     </Button>
-                    <Button onClick={handleSubmit} disabled={isLoading} variant="destructive">
+                    <Button onClick={handleSubmit} disabled={isLoading}>
                         {isLoading ? t('loading_saving') : t('save_button')}
                     </Button>
                 </DialogFooter>
