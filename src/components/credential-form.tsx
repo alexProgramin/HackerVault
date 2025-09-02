@@ -113,7 +113,7 @@ export function CredentialForm({ isOpen, onClose, credential }: CredentialFormPr
                         </div>
                         <Button variant="link" onClick={handleGeneratePassword} className="p-0 h-auto text-sm text-secondary">
                            <KeyRound className="w-4 h-4 mr-2" />
-                           {t('password_generator_title')}
+                           {t('generate_password_button')}
                         </Button>
                     </div>
                 </ScrollArea>
