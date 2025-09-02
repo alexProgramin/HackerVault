@@ -9,7 +9,6 @@ import { Label } from "@/components/ui/label";
 import { useVault, Credential } from "@/contexts/vault-context";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "@/hooks/use-translation";
-import { ScrollArea } from "./ui/scroll-area";
 import { KeyRound } from "lucide-react";
 
 
@@ -91,14 +90,14 @@ export function CredentialForm({ isOpen, onClose, credential }: CredentialFormPr
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
             <DialogContent className="max-w-md w-full max-h-[90vh] flex flex-col p-0">
-                <DialogHeader className="px-6 pt-6 pb-4">
+                <DialogHeader className="px-6 pt-6 pb-4 flex-shrink-0 border-b">
                     <DialogTitle>{credential ? t('edit_credential_title') : t('add_credential_title')}</DialogTitle>
                     <DialogDescription>
                         {t('credential_form_description')}
                     </DialogDescription>
                 </DialogHeader>
-                <ScrollArea className="flex-grow px-6">
-                    <div className="space-y-4 py-4">
+                <div className="flex-1 overflow-y-auto p-6">
+                    <div className="space-y-4">
                         <div className="space-y-2">
                             <Label htmlFor="name">{t('reference_label')}</Label>
                             <Input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Google Account" disabled={isLoading} />
@@ -116,8 +115,8 @@ export function CredentialForm({ isOpen, onClose, credential }: CredentialFormPr
                            {t('generate_password_button')}
                         </Button>
                     </div>
-                </ScrollArea>
-                <DialogFooter className="px-6 pb-6 pt-4 mt-auto border-t">
+                </div>
+                <DialogFooter className="px-6 pb-6 pt-4 flex-shrink-0 border-t">
                     <Button variant="outline" onClick={onClose} disabled={isLoading}>{t('cancel_button')}</Button>
                     <Button onClick={handleSubmit} disabled={isLoading}>
                         {isLoading ? t('loading_saving') : t('save_button')}
