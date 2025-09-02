@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/button';
 import { useTranslation } from '@/hooks/use-translation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PlusCircle, KeyRound, User, MoreVertical, Edit, Trash2, Eye, EyeOff, Tag, ShieldQuestion, LogOut, Home } from 'lucide-react';
-import { CredentialForm } from '@/components/credential-form';
 import { Credential } from '@/contexts/vault-context';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
@@ -23,8 +22,6 @@ export default function VaultPage() {
     const { t } = useTranslation();
     const { toast } = useToast();
     const [isClient, setIsClient] = useState(false);
-    const [isFormOpen, setIsFormOpen] = useState(false);
-    const [editingCredential, setEditingCredential] = useState<Credential | null>(null);
     const [visiblePasswords, setVisiblePasswords] = useState<Record<string, boolean>>({});
     const [isPinDialogOpen, setIsPinDialogOpen] = useState(false);
     const [credentialToView, setCredentialToView] = useState<string | null>(null);
@@ -53,13 +50,11 @@ export default function VaultPage() {
     }
 
     const handleAddNew = () => {
-        setEditingCredential(null);
-        setIsFormOpen(true);
+        router.push('/vault/credential');
     }
 
     const handleEdit = (credential: Credential) => {
-        setEditingCredential(credential);
-        setIsFormOpen(true);
+        router.push(`/vault/credential?id=${credential.id}`);
     }
     
     const handleDelete = (id: string) => {
@@ -174,7 +169,7 @@ export default function VaultPage() {
                                                         </AlertDialogHeader>
                                                         <AlertDialogFooter>
                                                           <AlertDialogCancel>{t('cancel_button')}</AlertDialogCancel>
-                                                          <AlertDialogAction onClick={() => handleDelete(cred.id)} className="bg-destructive hover:bg-destructive/90">{t('delete_button')}</AlertDialogAction>
+                                                          <AlertDialogAction onClick={() => handleDelete(cred.id)} variant="destructive">{t('delete_button')}</AlertDialogAction>
                                                         </AlertDialogFooter>
                                                     </AlertDialogContent>
                                                 </AlertDialog>
@@ -187,11 +182,6 @@ export default function VaultPage() {
                     </CardContent>
                 </Card>
             </div>
-            <CredentialForm
-                isOpen={isFormOpen}
-                onClose={() => setIsFormOpen(false)}
-                credential={editingCredential}
-            />
             <PinDialog
                 isOpen={isPinDialogOpen}
                 onClose={() => setIsPinDialogOpen(false)}
@@ -200,4 +190,5 @@ export default function VaultPage() {
         </main>
     );
 }
+
     
