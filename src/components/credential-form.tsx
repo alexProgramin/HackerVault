@@ -97,7 +97,7 @@ export function CredentialForm({ isOpen, onClose, credential }: CredentialFormPr
                         {t('credential_form_description')}
                     </DialogDescription>
                 </DialogHeader>
-                <ScrollArea className="flex-1">
+                <div className="flex-1 overflow-y-auto">
                     <div className="space-y-4 p-6">
                         <div className="space-y-2">
                             <Label htmlFor="name">{t('reference_label')}</Label>
@@ -116,7 +116,7 @@ export function CredentialForm({ isOpen, onClose, credential }: CredentialFormPr
                            {t('generate_password_button')}
                         </Button>
                     </div>
-                </ScrollArea>
+                </div>
                 <DialogFooter className="px-6 pb-6 pt-4 flex-shrink-0 border-t">
                     <Button variant="outline" onClick={onClose} disabled={isLoading}>{t('cancel_button')}</Button>
                     <Button onClick={handleSubmit} disabled={isLoading}>
